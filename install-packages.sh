@@ -6,6 +6,8 @@ cpu_count=$(nproc)
 if [[ "$cpu_count" -lt 2 ]]; then
     echo "This script requires at least 2 CPUs to run."
     exit 1
+else
+    echo "Your server satisfy requirements of at least 2 CPUs to run"
 fi
 
 # Patch management
@@ -15,6 +17,14 @@ sudo apt upgrade -y
 # Clean cache and remove outdated packages
 sudo apt autoremove -y
 sudo apt autoclean -y
+
+# Check if Git is installed
+if ! command -v git > /dev/null 2>&1; then
+  echo "Git is not installed. Installing now."
+  sudo apt install git -y
+else
+  echo "Git is already installed"
+fi
 
 # Check if Maven is installed
 if ! command -v mvn > /dev/null 2>&1; then
