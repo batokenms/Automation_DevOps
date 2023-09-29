@@ -39,6 +39,12 @@ if ! ufw status | grep -q "50000/tcp"; then
     ufw allow 50000/tcp
 fi
 
+# Exclude port 22 from UFW rules for SSH
+if ! ufw status | grep -q "22/tcp"; then
+    echo "Opening port 22 (SSH)..."
+    ufw allow 22/tcp
+fi
+
 # Enable the firewall
 echo "Enabling the firewall..."
 ufw enable
@@ -58,3 +64,4 @@ docker run \
   jenkins/jenkins
 
 echo "Jenkins container is now running."
+
