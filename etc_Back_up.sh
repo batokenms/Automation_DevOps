@@ -29,3 +29,5 @@ echo "$(date +"%Y-%m-%d %H:%M:%S"): Starting backup" >> "$LOG_FILE"
 perform_backup
 log_backup_status
 echo "$(date +"%Y-%m-%d %H:%M:%S"): Backup completed" >> "$LOG_FILE"
+
+echo "You can schedule this script to run at regular intervals using cron jobs to automate your backups. For example, to run it daily at 2 AM, add the following line to your crontab: 0 2 * * * /path/to/your/script.sh"
